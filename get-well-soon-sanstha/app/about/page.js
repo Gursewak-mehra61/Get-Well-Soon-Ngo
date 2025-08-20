@@ -20,7 +20,7 @@ const teamMembers = [
   },
   {
     name: "Puneet Nagpal",
-    img: "https://randomuser.me/api/portraits/men/31.jpg",
+    img: "/team/puneet-pic.png",
   },
   {
     name: "Ish Khurana",
