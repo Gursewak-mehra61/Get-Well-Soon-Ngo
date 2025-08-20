@@ -39,7 +39,7 @@ export default function Contact() {
     >
       <h1 className="text-3xl font-bold text-blue-800 mb-2">Contact Us</h1>
       <div className="mb-6">
-        <div className="font-semibold text-gray-700">Hospital Address:</div>
+        <div className="font-semibold text-gray-700">Office Address:</div>
         <div>Krishna Power Tool, Near SBI Bank ,Uttam nagar,Hansi, Hisar,  Haryana 125033</div>
         <div className="font-semibold mt-2 text-gray-700">Phone:</div>
         <div>+91 9416346327</div>

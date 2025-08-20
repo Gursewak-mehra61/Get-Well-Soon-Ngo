@@ -129,6 +129,8 @@ export default function Footer() {
     { name: "Volunteer", href: "/volunteer" },
   ];
 
+
+
   const contactInfo = [
   {
     icon: (

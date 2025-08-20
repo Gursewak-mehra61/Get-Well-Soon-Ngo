@@ -296,6 +296,54 @@ export default function Gallery() {
         </div>
       </section>
 
+       {/* Videos Section */}
+      <section className="max-w-7xl mx-auto py-10 px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6">Our Videos</h2>
+        <p className="text-center text-gray-600 mb-8 text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
+          Watch moments of compassion and hope captured in our video stories.
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {[
+            {
+              id: 1,
+              title: "Meal Distribution Drive",
+              desc: "Watch how volunteers prepare and distribute nutritious meals.",
+              videoSrc: "/video/vid1.mp4",
+              poster: "/videos/posters/meal-distribution.jpg",
+            },
+            {
+              id: 2,
+              title: "Emotional Support Session",
+              desc: "Counselors providing emotional care to patients and families.",
+              videoSrc: "/video/vid2.mp4",
+              poster: "/videos/posters/emotional-support.jpg",
+            },
+            {
+              id: 3,
+              title: "Special Events Highlights",
+              desc: "Highlights from our community celebrations and drives.",
+              videoSrc: "/video/vid3.mp4",
+              poster: "/videos/posters/special-events.jpg",
+            },
+          ].map(({ id, title, desc, videoSrc, poster }) => (
+            <article key={id} className="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white">
+              <video
+                className="w-full h-auto aspect-video bg-black"
+                controls
+                preload="metadata"
+                src={videoSrc}
+                poster={poster}
+                aria-label={title}
+              />
+              {/* <div className="p-4">
+                <h3 className="font-semibold text-lg text-gray-900 mb-2">{title}</h3>
+                <p className="text-gray-600 text-sm">{desc}</p>
+              </div> */}
+            </article>
+          ))}
+        </div>
+      </section>
+
       {/* Share Your Moments Section */}
       <section className="bg-blue-50 py-12">
         <div className="max-w-2xl mx-auto rounded-xl bg-white shadow p-8 flex flex-col items-center text-center">
