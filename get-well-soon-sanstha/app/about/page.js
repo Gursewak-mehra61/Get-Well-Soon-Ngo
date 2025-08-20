@@ -19,11 +19,11 @@ const teamMembers = [
     img: "/team/virender-pic.png",
   },
   {
-    name: "Puneet Nagpal",
+    name: "Mr. Puneet Nagpal",
     img: "/team/puneet-pic.png",
   },
   {
-    name: "Ish Khurana",
+    name: "Mr. Ish Khurana",
     img: "/team/ish-pic.png",
   },
 ];
