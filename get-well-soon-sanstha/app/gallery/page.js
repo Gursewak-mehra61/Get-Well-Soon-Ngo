@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const activities = [
   {
@@ -79,7 +80,6 @@ const activities = [
     tag: "Food Distribution",
     img: "/food-distribution/fd-11.jpg",
   },
-
   {
     id: 12,
     title: "Donation Drive",
@@ -87,7 +87,7 @@ const activities = [
     tag: "Food Distribution",
     img: "/food-distribution/fd-12.jpg",
   },
-{
+  {
     id: 13,
     title: "Event Title 13",
     desc: "Description for event 13 goes here.",
@@ -143,76 +143,6 @@ const activities = [
     tag: "Food Distribution",
     img: "/food-distribution/fd-20.jpg",
   },
-  {
-    id: 21,
-    title: "Event Title 21",
-    desc: "Description for event 21 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-21.jpg",
-  },
-  {
-    id: 22,
-    title: "Event Title 22",
-    desc: "Description for event 22 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-22.jpg",
-  },
-  {
-    id: 23,
-    title: "Event Title 23",
-    desc: "Description for event 23 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-23.jpg",
-  },
-  {
-    id: 24,
-    title: "Event Title 24",
-    desc: "Description for event 24 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-24.jpg",
-  },
-  {
-    id: 25,
-    title: "Event Title 25",
-    desc: "Description for event 25 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-25.jpg",
-  },
-  {
-    id: 26,
-    title: "Event Title 26",
-    desc: "Description for event 26 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-26.jpg",
-  },
-  {
-    id: 27,
-    title: "Event Title 27",
-    desc: "Description for event 27 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-27.jpg",
-  },
-  {
-    id: 28,
-    title: "Event Title 28",
-    desc: "Description for event 28 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-28.jpg",
-  },
-  {
-    id: 29,
-    title: "Event Title 29",
-    desc: "Description for event 29 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-29.jpg",
-  },
-  {
-    id: 30,
-    title: "Event Title 30",
-    desc: "Description for event 30 goes here.",
-    tag: "Food Distribution",
-    img: "/food-distribution/fd-30.jpg",
-  },
 ];
 
 const tags = [
@@ -232,11 +162,26 @@ const tagColors = {
 
 export default function Gallery() {
   const [activeTag, setActiveTag] = useState("All Activities");
+  const [zoomIndex, setZoomIndex] = useState(null);
 
   const filteredActivities =
     activeTag === "All Activities"
       ? activities
       : activities.filter((a) => a.tag === activeTag);
+
+  function closePopup() {
+    setZoomIndex(null);
+  }
+
+  function prevImage() {
+    if (zoomIndex === null) return;
+    setZoomIndex((zoomIndex - 1 + filteredActivities.length) % filteredActivities.length);
+  }
+
+  function nextImage() {
+    if (zoomIndex === null) return;
+    setZoomIndex((zoomIndex + 1) % filteredActivities.length);
+  }
 
   return (
     <div className="bg-white">
@@ -266,7 +211,7 @@ export default function Gallery() {
           See how we spread care and warmth through our various support services.
         </p>
         <div className="flex gap-2 justify-center mb-8 flex-wrap">
-          {tags.map(tag => (
+          {tags.map((tag) => (
             <button
               key={tag}
               className={`px-5 py-2 rounded-full font-medium text-sm transition ${
@@ -282,21 +227,19 @@ export default function Gallery() {
         </div>
 
         {/* Activities Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-7">
-          {filteredActivities.map(activity => (
-            <div key={activity.id} className="   overflow-hidden">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-7">
+          {filteredActivities.map((activity, index) => (
+            <div
+              key={activity.id}
+              className="overflow-hidden cursor-pointer rounded-lg shadow hover:shadow-lg transition"
+              onClick={() => setZoomIndex(index)}
+            >
               <img
                 src={activity.img}
                 alt={activity.title}
-                className="w-full h-44 object-cover rounded-lg mb-4 "
+                className="w-full h-44 object-cover"
+                loading="lazy"
               />
-              {/* <div className="px-2 pb-3">
-                <div className="font-bold text-lg mb-1">{activity.title}</div>
-                <div className="text-gray-600 mb-3 text-sm">{activity.desc}</div>
-                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${tagColors[activity.tag] || "bg-gray-200 text-gray-700"}`}>
-                  {activity.tag}
-                </span>
-              </div> */}
             </div>
           ))}
         </div>
@@ -310,11 +253,108 @@ export default function Gallery() {
             Have you been part of our activities? We'd love to feature your photos and experiences. Share your moments of spreading care and warmth with our community.
           </p>
           <div className="flex gap-4 mt-3 flex-wrap">
-            <a href="#" className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition">Share Your Photos</a>
-            <a href="#" className="bg-gray-100 text-blue-700 px-6 py-2 rounded-full font-semibold hover:bg-blue-200 transition">Follow Us on Social Media</a>
+            <a
+              href="#"
+              className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition"
+            >
+              Share Your Photos
+            </a>
+            <a
+              href="#"
+              className="bg-gray-100 text-blue-700 px-6 py-2 rounded-full font-semibold hover:bg-blue-200 transition"
+            >
+              Follow Us on Social Media
+            </a>
           </div>
         </div>
       </section>
+
+      {/* Image Zoom Popup */}
+      <AnimatePresence>
+        {zoomIndex !== null && (
+          <motion.div
+            key="popup"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30 backdrop-blur-sm"
+            onClick={closePopup}
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="relative max-w-4xl w-full mx-4 sm:mx-8 rounded-xl overflow-hidden bg-white/30 backdrop-blur-md shadow-lg border border-white/40"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={filteredActivities[zoomIndex].img}
+                alt={filteredActivities[zoomIndex].title}
+                className="w-full max-h-[80vh] object-contain rounded-lg"
+                loading="eager"
+              />
+              {/* Close Button */}
+              <button
+                onClick={closePopup}
+                className="absolute top-3 right-3 p-2 rounded-full bg-white/70 backdrop-blur-sm hover:bg-white transition"
+                aria-label="Close zoomed image"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-gray-800"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Prev Button */}
+              <button
+                onClick={prevImage}
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-white/70 backdrop-blur-sm hover:bg-white transition"
+                aria-label="Previous image"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-gray-800"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={nextImage}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-white/70 backdrop-blur-sm hover:bg-white transition"
+                aria-label="Next image"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-gray-800"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
+
+  function closePopup() {
+    setZoomIndex(null);
+  }
 }
