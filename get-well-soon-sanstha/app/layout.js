@@ -20,6 +20,10 @@ export default function RootLayout({ children }) {
         <script src="https://cdn.tailwindcss.com"></script>
         {/* Fonts for a clean NGO theme */}
          <link rel="icon" href="/favicon.ico" />
+          <link
+          href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+          rel="stylesheet"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
