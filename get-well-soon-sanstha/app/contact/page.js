@@ -40,9 +40,9 @@ export default function Contact() {
       <h1 className="text-3xl font-bold text-blue-800 mb-2">Contact Us</h1>
       <div className="mb-6">
         <div className="font-semibold text-gray-700">Hospital Address:</div>
-        <div>Get Well Soon Sanstha, Room 10, City Hospital, Main Road, Sector 5, Delhi – 110011</div>
+        <div>Krishna Power Tool, Near SBI Bank Hansi, Hisar, Uttam nagar, Hansi, Haryana 125033</div>
         <div className="font-semibold mt-2 text-gray-700">Phone:</div>
-        <div>+91 9876543210</div>
+        <div>+91 9416346327</div>
         <div className="font-semibold mt-2 text-gray-700">Email:</div>
         <div>contact@getwellsoon.org</div>
       </div>

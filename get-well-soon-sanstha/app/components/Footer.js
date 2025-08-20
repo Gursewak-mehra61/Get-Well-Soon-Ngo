@@ -142,7 +142,7 @@ export default function Footer() {
         <path d="M12 22c-.3 0-.6-.1-.8-.4C7.5 17.2 5 13.9 5 10a7 7 0 1 1 14 0c0 3.9-2.5 7.2-6.2 11.6-.2.3-.5.4-.8.4ZM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
       </svg>
     ),
-    text: "Near SBI Bank Hansi Hisar, Uttam nagar, Hansi, Haryana 125033",
+    text: "Krishna Power Tool, Near SBI Bank Hansi, Hisar, Uttam nagar, Hansi, Haryana 125033",
   },
   {
     icon: (
@@ -156,7 +156,7 @@ export default function Footer() {
   <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.2.48 2.5.73 3.85.73a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.25 2.65.73 3.85a1 1 0 01-.21 1.11l-2.2 2.2z"/>
 </svg>
     ),
-    text: "+91 8168589826",
+    text: "+91 9416346327",
   },
   {
     icon: (
