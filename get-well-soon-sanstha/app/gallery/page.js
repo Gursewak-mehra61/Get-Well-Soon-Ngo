@@ -143,6 +143,57 @@ const activities = [
     tag: "Food Distribution",
     img: "/food-distribution/fd-20.jpg",
   },
+  {
+    id: 21,
+    title: "Event Title 21",
+    desc: "Description for event 20 goes here.",
+    tag: "Special Events",
+    img: "/special-event/se-1.jpg",
+  },
+  {
+    id: 22,
+    title: "Event Title 22",
+    desc: "Description for event 20 goes here.",
+    tag: "Special Events",
+    img: "/special-event/se-2.jpg",
+  },
+  {
+    id: 23,
+    title: "Event Title 23",
+    desc: "Description for event 20 goes here.",
+    tag: "Special Events",
+    img: "/special-event/se-3.jpg",
+  },
+  {
+  id: 24,
+  title: "Event Title 24",
+  desc: "Description for event 24 goes here.",
+  tag: "Food Distribution",
+  img: "/food-distribution/fd-24.jpg",
+},
+{
+  id: 25,
+  title: "Event Title 25",
+  desc: "Description for event 25 goes here.",
+  tag: "Food Distribution",
+  img: "/food-distribution/fd-25.jpg",
+},
+{
+  id: 26,
+  title: "Event Title 26",
+  desc: "Description for event 26 goes here.",
+  tag: "Food Distribution",
+  img: "/food-distribution/fd-26.jpg",
+},
+{
+  id: 27,
+  title: "Event Title 27",
+  desc: "Description for event 27 goes here.",
+  tag: "Special Events",
+  img: "/special-event/se-4.jpg",
+},
+
+
 ];
 
 const tags = [
