@@ -24,6 +24,7 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-5 py-3 md:py-6 flex items-center justify-between">
           {/* Logo */}
+          
           <Link href="/" className="flex items-center gap-2 select-none" onClick={() => setIsOpen(false)}>
             <span className="text-lg sm:text-xl md:text-2xl font-bold text-blue-700">Get Well Soon</span>
           </Link>
