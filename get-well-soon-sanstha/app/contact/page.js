@@ -1,5 +1,8 @@
 'use client';
 import { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { buildApiUrl, API_ENDPOINTS } from "../config/api";
 
 // Beautiful Popup Notification Component
 function NotificationPopup({ type, message, onClose, isVisible }) {
@@ -79,7 +82,7 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:4000/api/contact/submit", {
+      const res = await fetch(buildApiUrl(API_ENDPOINTS.CONTACT_SUBMIT), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

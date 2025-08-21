@@ -1,5 +1,8 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { useState, useEffect, useMemo } from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { getApiUrl, buildApiUrl, API_ENDPOINTS } from "../config/api";
 
 function getToken() {
   if (typeof window === 'undefined') return '';
@@ -13,7 +16,7 @@ function useFetchList(endpoint, query, page) {
     async function run() {
       setState(s => ({ ...s, loading: true, error: '' }));
       try {
-        const url = new URL(`http://localhost:4000` + endpoint);
+        const url = new URL(getApiUrl() + endpoint);
         if (query) url.searchParams.set('q', query);
         if (page) url.searchParams.set('page', String(page));
         url.searchParams.set('limit', '10');
@@ -103,7 +106,7 @@ export default function AdminDashboard() {
       e.preventDefault();
       setAuthError('');
       try {
-        const res = await fetch(`http://localhost:4000/api/auth/login`, {
+        const res = await fetch(buildApiUrl(API_ENDPOINTS.AUTH_LOGIN), {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(creds)
         });
         const json = await res.json();
