@@ -369,8 +369,10 @@ export default function AdminDashboard() {
                           </td>
                           {activeTab === 'volunteers' && <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-600 text-sm sm:text-base hidden sm:table-cell">{it.phone}</td>}
                           <td className="px-3 sm:px-6 py-3 sm:py-4 text-blue-600 font-medium text-sm sm:text-base">{it.email}</td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-700 max-w-xs truncate text-sm sm:text-base hidden md:table-cell" title={activeTab === 'contacts' ? it.message : it.why}>
-                            {activeTab === 'contacts' ? it.message : it.why}
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-700 max-w-md text-sm sm:text-base hidden md:table-cell">
+                            <div className="whitespace-normal break-words">
+                              {activeTab === 'contacts' ? it.message : it.why}
+                            </div>
                           </td>
                           <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-500 text-xs sm:text-sm hidden lg:table-cell">
                             {new Date(it.createdAt || it.timestamp).toLocaleString()}
