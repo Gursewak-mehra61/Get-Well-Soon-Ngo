@@ -1,19 +1,19 @@
 // API Configuration
 const API_CONFIG = {
   // Use environment variable if available, otherwise fallback to production URL
-  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'https://get-well-soon-backend.onrender.com',
+  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'https://get-well-soon-ngo.onrender.com',
   
   // Development fallback
   DEV_URL: 'http://localhost:4000',
   
   // Production URL (replace with your actual backend URL when deployed)
-  PROD_URL: 'https://get-well-soon-backend.onrender.com'
+  PROD_URL: 'https://get-well-soon-ngo.onrender.com'
 };
 
 // Get the appropriate API URL based on environment
 export const getApiUrl = () => {
-  // In development
-  if (process.env.NODE_ENV === 'development') {
+  // Check if we're in browser and on localhost (development)
+  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
     return API_CONFIG.DEV_URL;
   }
   
