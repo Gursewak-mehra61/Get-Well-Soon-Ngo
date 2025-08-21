@@ -232,10 +232,10 @@ export default function Donate() {
             <div className="text-gray-700 font-medium mb-1">Administrative Costs</div>
           </div>
         </div>
-        <p className="mt-3 text-center text-gray-600">
+        {/* <p className="mt-3 text-center text-gray-600">
           All donations are tax-deductible under Section 80G. You will receive a receipt for tax purpose.<br/>
           <a href="#" className="text-blue-600 underline hover:text-blue-800">Request Financial Reports &rarr;</a>
-        </p>
+        </p> */}
       </section>
     </div>
   );

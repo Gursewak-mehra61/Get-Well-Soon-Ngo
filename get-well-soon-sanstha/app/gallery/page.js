@@ -351,70 +351,63 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* Modern Videos Section */}
-      <section className="bg-white py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Stories in Motion
+      {/* Videos Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+              Our Videos
             </h2>
-            <p className="text-gray-600 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-              Experience the heartwarming moments and impactful stories through our video collection
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Watch our impact in action through these videos
             </p>
-          </div> */}
+          </div>
           
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 animate-slide-up">
-            {[
-              {
-                id: 1,
-                title: "Meal Distribution Drive",
-                desc: "Watch how volunteers prepare and distribute nutritious meals to patients and families.",
-                videoSrc: "/video/vid1.mp4",
-                poster: "/videos/posters/meal-distribution.jpg",
-                category: "Community Service"
-              },
-              {
-                id: 2,
-                title: "Emotional Support Session",
-                desc: "Counselors providing emotional care and support to patients and their families.",
-                videoSrc: "/video/vid2.mp4",
-                poster: "/videos/posters/emotional-support.jpg",
-                category: "Mental Health"
-              },
-              {
-                id: 3,
-                title: "Special Events Highlights",
-                desc: "Highlights from our community celebrations, drives, and special occasions.",
-                videoSrc: "/video/vid3.mp4",
-                poster: "/videos/posters/special-events.jpg",
-                category: "Events"
-              },
-            ].map(({ id, title, desc, videoSrc, poster, category }) => (
-              <article key={id} className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
-                <div className="relative overflow-hidden">
-                  <video
-                    className="w-full h-64 object-cover bg-gradient-to-br from-gray-100 to-gray-200 transition-transform duration-700 group-hover:scale-105"
-                    controls
-                    preload="metadata"
-                    src={videoSrc}
-                    poster={poster}
-                    aria-label={title}
-                  />
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold backdrop-blur-sm">
-                    {category}
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                {/* <div className="p-6">
-                  <h3 className="font-bold text-xl mb-3 text-gray-800 group-hover:text-purple-600 transition-colors duration-300">
-                    {title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {desc}
-                  </p>
-                </div> */}
-              </article>
-            ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <video 
+                className="w-full h-48 object-cover"
+                controls
+                poster="/videos/posters/meal-distribution.jpg"
+              >
+                <source src="/video/vid1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="p-4">
+                <h3 className="font-semibold text-lg mb-2">Meal Distribution</h3>
+                <p className="text-gray-600 text-sm">Volunteers serving meals to patients and families</p>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <video 
+                className="w-full h-48 object-cover"
+                controls
+                poster="/videos/posters/emotional-support.jpg"
+              >
+                <source src="/video/vid2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="p-4">
+                <h3 className="font-semibold text-lg mb-2">Emotional Support</h3>
+                <p className="text-gray-600 text-sm">Providing care and support to families</p>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <video 
+                className="w-full h-48 object-cover"
+                controls
+                poster="/videos/posters/special-events.jpg"
+              >
+                <source src="/video/vid3.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="p-4">
+                <h3 className="font-semibold text-lg mb-2">Special Events</h3>
+                <p className="text-gray-600 text-sm">Community celebrations and special occasions</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -547,8 +540,4 @@ export default function Gallery() {
       </AnimatePresence>
     </div>
   );
-
-  function closePopup() {
-    setZoomIndex(null);
-  }
 }
