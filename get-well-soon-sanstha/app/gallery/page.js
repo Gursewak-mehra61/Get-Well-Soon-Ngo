@@ -236,134 +236,229 @@ export default function Gallery() {
 
   return (
     <div className="bg-white">
-      {/* Gallery Hero Banner */}
-      <section className="relative w-full h-[260px] sm:h-[320px] md:h-[400px] flex items-center justify-center">
-        <img
-          src="https://images.unsplash.com/photo-1493836512294-502baa1986e2?auto=format&fit=crop&w=1600&q=80"
-          alt="Gallery Banner"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-black/45"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center text-center w-full">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3 drop-shadow">
-            Gallery
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-2 max-w-2xl mx-auto">
-            Moments of compassion, care, and hope captured during our service to hospital patients and their families.
-          </p>
+      {/* Modern Gallery Hero */}
+      <section className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-green-600/80 to-teal-600/90"></div>
+        <div className="absolute inset-0 opacity-30">
+          <div className="w-full h-full" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat'
+          }}></div>
         </div>
-      </section>
-
-      {/* Gallery Activity Filter */}
-      <section className="max-w-7xl mx-auto py-10 px-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-3">Our Activities in Pictures</h2>
-        <p className="text-center text-gray-600 mb-7 text-sm sm:text-base md:text-lg">
-          See how we spread care and warmth through our various support services.
-        </p>
-        <div className="flex gap-2 justify-center mb-8 flex-wrap">
-          {tags.map((tag) => (
-            <button
-              key={tag}
-              className={`px-5 py-2 rounded-full font-medium text-sm transition ${
-                tag === activeTag
-                  ? "bg-blue-600 text-white shadow"
-                  : "bg-gray-100 text-gray-700 hover:bg-blue-100"
-              }`}
-              onClick={() => setActiveTag(tag)}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-
-        {/* Activities Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-7">
-          {filteredActivities.map((activity, index) => (
-            <div
-              key={activity.id}
-              className="overflow-hidden cursor-pointer rounded-lg shadow hover:shadow-lg transition"
-              onClick={() => setZoomIndex(index)}
-            >
-              <img
-                src={activity.img}
-                alt={activity.title}
-                className="w-full h-44 object-cover"
-                loading="lazy"
-              />
+        <div className="relative z-10 text-center px-4 animate-fade-in">
+          <div className="mb-6">
+            <div className="w-20 h-20 mx-auto bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6 animate-slide-down">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
             </div>
-          ))}
-        </div>
-      </section>
-
-       {/* Videos Section */}
-      <section className="max-w-7xl mx-auto py-10 px-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6">Our Videos</h2>
-        <p className="text-center text-gray-600 mb-8 text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
-          Watch moments of compassion and hope captured in our video stories.
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {[
-            {
-              id: 1,
-              title: "Meal Distribution Drive",
-              desc: "Watch how volunteers prepare and distribute nutritious meals.",
-              videoSrc: "/video/vid1.mp4",
-              poster: "/videos/posters/meal-distribution.jpg",
-            },
-            {
-              id: 2,
-              title: "Emotional Support Session",
-              desc: "Counselors providing emotional care to patients and families.",
-              videoSrc: "/video/vid2.mp4",
-              poster: "/videos/posters/emotional-support.jpg",
-            },
-            {
-              id: 3,
-              title: "Special Events Highlights",
-              desc: "Highlights from our community celebrations and drives.",
-              videoSrc: "/video/vid3.mp4",
-              poster: "/videos/posters/special-events.jpg",
-            },
-          ].map(({ id, title, desc, videoSrc, poster }) => (
-            <article key={id} className="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white">
-              <video
-                className="w-full h-auto aspect-video bg-black"
-                controls
-                preload="metadata"
-                src={videoSrc}
-                poster={poster}
-                aria-label={title}
-              />
-              {/* <div className="p-4">
-                <h3 className="font-semibold text-lg text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-600 text-sm">{desc}</p>
-              </div> */}
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Share Your Moments Section */}
-      <section className="bg-blue-50 py-12">
-        <div className="max-w-2xl mx-auto rounded-xl bg-white shadow p-8 flex flex-col items-center text-center">
-          <h3 className="text-2xl font-bold mb-2 text-blue-700">Share Your Moments</h3>
-          <p className="mb-6 text-gray-600">
-            Have you been part of our activities? We'd love to feature your photos and experiences. Share your moments of spreading care and warmth with our community.
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-4 leading-tight animate-slide-up">
+            Our <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">Gallery</span>
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-delayed">
+            Capturing moments of compassion, hope, and community impact through our mission to spread care and warmth
           </p>
-          <div className="flex gap-4 mt-3 flex-wrap">
-            <a
-              href="#"
-              className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition"
-            >
-              Share Your Photos
-            </a>
-            <a
-              href="#"
-              className="bg-gray-100 text-blue-700 px-6 py-2 rounded-full font-semibold hover:bg-blue-200 transition"
-            >
-              Follow Us on Social Media
-            </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
+            <div className="bg-white/20 backdrop-blur-sm rounded-2xl px-6 py-3 border border-white/30">
+              <span className="text-white font-semibold">150,000+ Lives Touched</span>
+            </div>
+            <div className="bg-white/20 backdrop-blur-sm rounded-2xl px-6 py-3 border border-white/30">
+              <span className="text-white font-semibold">2+ Hospitals Served</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Modern Gallery Section */}
+      <section className="bg-gradient-to-br from-gray-50 via-blue-50/30 to-green-50/30 py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+              Our Impact in Action
+            </h2>
+            <p className="text-gray-600 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+              Witness the moments that define our mission - spreading care, warmth, and hope throughout our community
+            </p>
+          </div>
+
+          {/* Modern Filter Tabs */}
+          <div className="flex justify-center mb-12 animate-slide-up">
+            <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-2 shadow-xl border border-white/20">
+              <div className="flex gap-1 flex-wrap justify-center">
+                {tags.map((tag) => (
+                  <button
+                    key={tag}
+                    className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
+                      tag === activeTag
+                        ? "bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg scale-105"
+                        : "text-gray-700 hover:bg-white/80 hover:shadow-md hover:scale-105"
+                    }`}
+                    onClick={() => setActiveTag(tag)}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Modern Masonry Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in">
+            {filteredActivities.map((activity, index) => (
+              <div
+                key={activity.id}
+                className="group relative overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2"
+                onClick={() => setZoomIndex(index)}
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={activity.img}
+                    alt={activity.title}
+                    className="w-full h-64 sm:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  {/* Tag Badge */}
+                  <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold ${tagColors[activity.tag] || 'bg-gray-100 text-gray-700'} backdrop-blur-sm`}>
+                    {activity.tag}
+                  </div>
+                  
+                  {/* Hover Overlay */}
+                  {/* <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-white">
+                      <h3 className="font-bold text-lg mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        {activity.title}
+                      </h3>
+                      <p className="text-sm text-white/90 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                        {activity.desc}
+                      </p>
+                    </div>
+                  </div> */}
+                  
+                  {/* View Icon */}
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Modern Videos Section */}
+      <section className="bg-white py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              Stories in Motion
+            </h2>
+            <p className="text-gray-600 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+              Experience the heartwarming moments and impactful stories through our video collection
+            </p>
+          </div> */}
+          
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 animate-slide-up">
+            {[
+              {
+                id: 1,
+                title: "Meal Distribution Drive",
+                desc: "Watch how volunteers prepare and distribute nutritious meals to patients and families.",
+                videoSrc: "/video/vid1.mp4",
+                poster: "/videos/posters/meal-distribution.jpg",
+                category: "Community Service"
+              },
+              {
+                id: 2,
+                title: "Emotional Support Session",
+                desc: "Counselors providing emotional care and support to patients and their families.",
+                videoSrc: "/video/vid2.mp4",
+                poster: "/videos/posters/emotional-support.jpg",
+                category: "Mental Health"
+              },
+              {
+                id: 3,
+                title: "Special Events Highlights",
+                desc: "Highlights from our community celebrations, drives, and special occasions.",
+                videoSrc: "/video/vid3.mp4",
+                poster: "/videos/posters/special-events.jpg",
+                category: "Events"
+              },
+            ].map(({ id, title, desc, videoSrc, poster, category }) => (
+              <article key={id} className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+                <div className="relative overflow-hidden">
+                  <video
+                    className="w-full h-64 object-cover bg-gradient-to-br from-gray-100 to-gray-200 transition-transform duration-700 group-hover:scale-105"
+                    controls
+                    preload="metadata"
+                    src={videoSrc}
+                    poster={poster}
+                    aria-label={title}
+                  />
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold backdrop-blur-sm">
+                    {category}
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                {/* <div className="p-6">
+                  <h3 className="font-bold text-xl mb-3 text-gray-800 group-hover:text-purple-600 transition-colors duration-300">
+                    {title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {desc}
+                  </p>
+                </div> */}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* Modern CTA Section */}
+      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 sm:p-12 border border-white/20 animate-fade-in">
+            <div className="w-16 h-16 mx-auto bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+              </svg>
+            </div>
+            <h3 className="text-3xl sm:text-4xl font-extrabold mb-4 text-white">
+              Share Your <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">Story</span>
+            </h3>
+            <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Been part of our mission? We'd love to showcase your photos and experiences. Help us inspire others by sharing your moments of spreading care and warmth.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#"
+                className="group px-8 py-4 bg-white text-blue-600 rounded-2xl font-bold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
+              >
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Share Your Photos
+                </span>
+              </a>
+              <a
+                href="#"
+                className="group px-8 py-4 border-2 border-white/30 text-white rounded-2xl font-bold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+              >
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                  </svg>
+                  Follow Us
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </section>

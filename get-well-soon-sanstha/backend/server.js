@@ -18,9 +18,12 @@ const mongoUri = process.env.MONGODB_URI || 'mongodb+srv://gursewakmehra189:test
 
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN?.split(',') || ['http://localhost:3000'],
-  credentials: false,
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json({ limit: '1mb' }));
 app.use(morgan('dev'));
 
@@ -29,18 +32,22 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.use('/api/auth', authRouter);
-app.use('/api/contact', requireAuth, contactRouter);
-app.use('/api/volunteer', requireAuth, volunteerRouter);
+app.use('/api/contact', contactRouter);
+app.use('/api/volunteer', volunteerRouter); // Mixed auth - submit is public, list requires auth
 
 async function start() {
   try {
     await mongoose.connect(mongoUri, { autoIndex: true });
     console.log('Connected to MongoDB');
-    app.listen(port, () => console.log(`Backend listening on http://localhost:${port}`));
   } catch (err) {
-    console.error('Failed to start server', err);
-    process.exit(1);
+    console.warn('MongoDB connection failed, using in-memory storage:', err.message);
+    // Continue without MongoDB - use in-memory storage
   }
+  
+  app.listen(port, () => {
+    console.log(`Backend listening on http://localhost:${port}`);
+    console.log('MongoDB status:', mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected (using fallback)');
+  });
 }
 
 start();

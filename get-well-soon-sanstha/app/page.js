@@ -5,29 +5,29 @@ export default function Home() {
     <div className="bg-white">
 
       {/* HERO SECTION */}
-      <section className="relative w-full h-[420px] sm:h-[520px] md:h-[620px] flex items-center justify-center">
+      <section className="relative w-full h-[420px] sm:h-[520px] md:h-[620px] flex items-center justify-center overflow-hidden">
         <img
           src="/hero/hero-img.jpg"
           alt="Ngo"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover transform scale-105 hover:scale-100 transition-transform duration-700"
           loading="eager"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-black/45"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60"></div>
         <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-[20px] sm:text-3xl md:text-5xl font-extrabold text-white mb-2 sm:mb-3 drop-shadow leading-tight">
+          <h1 className="text-[20px] sm:text-3xl md:text-5xl font-extrabold text-white mb-2 sm:mb-3 drop-shadow-2xl leading-tight animate-slide-down">
             Spreading Care &amp; Warmth
             <br />
-            <span className="text-blue-300">in Hospitals</span>
+            <span className="bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">in Hospitals</span>
           </h1>
-          <p className="text-xs sm:text-base md:text-lg text-gray-100 mb-6 sm:mb-8 max-w-[22rem] sm:max-w-xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-base md:text-lg text-gray-100 mb-6 sm:mb-8 max-w-[22rem] sm:max-w-xl mx-auto leading-relaxed drop-shadow-lg animate-fade-in-delayed">
             We provide essential support to hospital patients and their families through free meals, blankets, and emotional care during their healing journey.
           </p>
-          <div className="flex gap-3 sm:gap-4 justify-center">
-            <Link href="/donate" className="px-4 sm:px-8 py-2 sm:py-3 bg-blue-600 text-white text-xs sm:text-lg font-semibold rounded-full shadow-lg hover:bg-blue-700 transition">
+          <div className="flex gap-3 sm:gap-4 justify-center animate-fade-in">
+            <Link href="/donate" className="px-4 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs sm:text-lg font-semibold rounded-full shadow-2xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300">
               Donate Now
             </Link>
-            <Link href="/volunteer" className="px-4 sm:px-8 py-2 sm:py-3 border-2 border-white text-white text-xs sm:text-lg font-semibold rounded-full shadow-lg hover:bg-white hover:text-blue-600 transition">
+            <Link href="/volunteer" className="px-4 sm:px-8 py-2 sm:py-3 border-2 border-white/80 backdrop-blur-sm text-white text-xs sm:text-lg font-semibold rounded-full shadow-2xl hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300">
               Join as Volunteer
             </Link>
           </div>
@@ -35,29 +35,31 @@ export default function Home() {
       </section>
 
       {/* IMPACT SECTION */}
-      <section className="bg-white py-8 sm:py-12">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-5 leading-tight">
-          Our Impact
-        </h2>
-        <p className="text-center text-gray-500 mb-8 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-          Making a difference in the lives of patients and families across multiple hospitals
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 justify-center max-w-4xl mx-auto">
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-600 mb-2 leading-none">150,000+</div>
-            <div className="text-gray-700 font-medium text-base sm:text-lg leading-snug">Patients Helped</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-600 mb-2 leading-none">8+</div>
-            <div className="text-gray-700 font-medium text-base sm:text-lg leading-snug">Volunteers</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-600 mb-2 leading-none">2+</div>
-            <div className="text-gray-700 font-medium text-base sm:text-lg leading-snug">Hospitals Covered</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-600 mb-2 leading-none">7+</div>
-            <div className="text-gray-700 font-medium text-base sm:text-lg leading-snug">Years of Service</div>
+      <section className="bg-gradient-to-br from-gray-50 to-blue-50 py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-5 leading-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-slide-down">
+            Our Impact
+          </h2>
+          <p className="text-center text-gray-600 mb-12 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed animate-fade-in-delayed">
+            Making a difference in the lives of patients and families across multiple hospitals
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 justify-center">
+            <div className="text-center bg-white/70 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 leading-none">150,000+</div>
+              <div className="text-gray-700 font-medium text-base sm:text-lg leading-snug">Patients Helped</div>
+            </div>
+            <div className="text-center bg-white/70 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-slide-left">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 leading-none">8+</div>
+              <div className="text-gray-700 font-medium text-base sm:text-lg leading-snug">Volunteers</div>
+            </div>
+            <div className="text-center bg-white/70 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-slide-right">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 leading-none">2+</div>
+              <div className="text-gray-700 font-medium text-base sm:text-lg leading-snug">Hospitals Covered</div>
+            </div>
+            <div className="text-center bg-white/70 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-delayed">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 leading-none">7+</div>
+              <div className="text-gray-700 font-medium text-base sm:text-lg leading-snug">Years of Service</div>
+            </div>
           </div>
         </div>
       </section>
@@ -172,18 +174,23 @@ export default function Home() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="bg-gradient-to-r from-blue-600 via-green-500 to-blue-400 py-12 sm:py-14 px-4 sm:px-8 text-white text-center">
-        <h2 className="text-xl sm:text-2xl font-bold mb-3">Make a Difference Today</h2>
-        <p className="max-w-xl mx-auto text-sm sm:text-base mb-6">
-          Your support can bring comfort and hope to patients and families during their most challenging times. Every contribution makes a meaningful impact in someone's healing journey.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-          <Link href="/donate" className="bg-white text-blue-600 px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-100 shadow">
-            Donate Now
-          </Link>
-          <Link href="/volunteer" className="bg-transparent border-2 border-white text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-white hover:text-blue-600 shadow">
-            Become a Volunteer
-          </Link>
+      <section className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 py-16 sm:py-20 px-4 sm:px-8 text-white text-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-20"></div>
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 animate-slide-down">
+            Make a Difference Today
+          </h2>
+          <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg mb-8 leading-relaxed opacity-90 animate-fade-in-delayed">
+            Your support can bring comfort and hope to patients and families during their most challenging times. Every contribution makes a meaningful impact in someone's healing journey.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fade-in">
+            <Link href="/donate" className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-sm sm:text-base hover:bg-gray-100 shadow-2xl transform hover:scale-105 transition-all duration-300 hover:shadow-white/20">
+               Donate Now
+            </Link>
+            <Link href="/volunteer" className="bg-transparent border-2 border-white/80 backdrop-blur-sm text-white px-8 py-4 rounded-2xl font-semibold text-sm sm:text-base hover:bg-white hover:text-blue-600 shadow-2xl transform hover:scale-105 transition-all duration-300">
+               Become a Volunteer
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -189,10 +189,37 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
         {/* Left Section */}
         <div>
-          <Link href="/" className="flex items-center mb-4">
-            <span className="text-2xl font-extrabold text-blue-400 font-mono">
-              Get Well Soon सेवा समिति हांसी
-            </span>
+          <Link href="/" className="flex items-center mb-6 group cursor-pointer">
+            <div className="relative">
+              {/* Decorative accent */}
+              <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-blue-400 to-green-400 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <div className="flex flex-col pl-2">
+                {/* Main title with gradient */}
+                <span className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-blue-300 to-cyan-300 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:via-cyan-300 group-hover:to-green-300 transition-all duration-500 leading-tight">
+                  Get Well Soon
+                </span>
+                
+                {/* Hindi text with enhanced styling */}
+                <span className="text-xl font-semibold text-gray-300 group-hover:text-white transition-all duration-300 -mt-1 tracking-wide">
+                  सेवा समिति हांसी
+                </span>
+                
+                {/* Subtitle with decorative elements */}
+                <div className="flex items-center mt-2 gap-2">
+                  <div className="w-8 h-px bg-gradient-to-r from-blue-400 to-transparent"></div>
+                  <span className="text-xs text-gray-400 font-medium tracking-widest uppercase group-hover:text-gray-300 transition-colors duration-300">
+                    Seva Samiti Hansi
+                  </span>
+                  <div className="w-8 h-px bg-gradient-to-l from-blue-400 to-transparent"></div>
+                </div>
+                
+                {/* Mission tagline */}
+                <span className="text-xs text-gray-500 font-light italic mt-1 group-hover:text-gray-400 transition-colors duration-300">
+                  Caring • Healing • Serving
+                </span>
+              </div>
+            </div>
           </Link>
           <p className="mb-6 text-gray-300 max-w-md text-sm sm:text-base">
             Spreading care and warmth in hospitals by providing essential

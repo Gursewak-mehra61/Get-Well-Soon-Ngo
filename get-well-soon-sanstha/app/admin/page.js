@@ -13,7 +13,7 @@ function useFetchList(endpoint, query, page) {
     async function run() {
       setState(s => ({ ...s, loading: true, error: '' }));
       try {
-        const url = new URL((process.env.NEXT_PUBLIC_API_BASE_URL || '') + endpoint);
+        const url = new URL(`http://localhost:4000` + endpoint);
         if (query) url.searchParams.set('q', query);
         if (page) url.searchParams.set('page', String(page));
         url.searchParams.set('limit', '10');
@@ -29,6 +29,57 @@ function useFetchList(endpoint, query, page) {
     return () => { cancelled = true; };
   }, [endpoint, query, page]);
   return state;
+}
+
+function RippleButton({ children, onClick, className, disabled, type = "button" }) {
+  const [ripples, setRipples] = useState([]);
+
+  const addRipple = (event) => {
+    const button = event.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    const newRipple = {
+      x,
+      y,
+      size,
+      id: Date.now()
+    };
+
+    setRipples(prev => [...prev, newRipple]);
+    
+    setTimeout(() => {
+      setRipples(prev => prev.filter(ripple => ripple.id !== newRipple.id));
+    }, 600);
+
+    if (onClick) onClick(event);
+  };
+
+  return (
+    <button
+      type={type}
+      className={`relative overflow-hidden ${className}`}
+      onClick={addRipple}
+      disabled={disabled}
+    >
+      {children}
+      {ripples.map(ripple => (
+        <span
+          key={ripple.id}
+          className="absolute bg-white/30 rounded-full animate-ping"
+          style={{
+            left: ripple.x,
+            top: ripple.y,
+            width: ripple.size,
+            height: ripple.size,
+            animationDuration: '600ms'
+          }}
+        />
+      ))}
+    </button>
+  );
 }
 
 export default function AdminDashboard() {
@@ -52,7 +103,7 @@ export default function AdminDashboard() {
       e.preventDefault();
       setAuthError('');
       try {
-        const res = await fetch((process.env.NEXT_PUBLIC_API_BASE_URL || '') + '/api/auth/login', {
+        const res = await fetch(`http://localhost:4000/api/auth/login`, {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(creds)
         });
         const json = await res.json();
@@ -64,78 +115,290 @@ export default function AdminDashboard() {
       }
     }
     return (
-      <section className="min-h-[60vh] flex items-center justify-center px-4">
-        <form onSubmit={handleLogin} className="w-full max-w-sm bg-white rounded-2xl shadow p-6">
-          <h1 className="text-xl font-bold text-blue-700 mb-4 text-center">Admin Login</h1>
-          {authError && <div className="text-red-600 text-sm mb-3 text-center">{authError}</div>}
-          <input value={creds.username} onChange={e=>setCreds({...creds, username: e.target.value})} placeholder="Username" className="w-full border rounded px-3 py-2 mb-3" />
-          <input value={creds.password} onChange={e=>setCreds({...creds, password: e.target.value})} placeholder="Password" type="password" className="w-full border rounded px-3 py-2 mb-4" />
-          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700">Login</button>
-        </form>
+      <section className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 animate-fade-in">
+        <div className="w-full max-w-md animate-slide-down">
+          <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 p-8">
+            <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-fade-in-delayed">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            
+            <h1 className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent mb-2 text-center animate-slide-down">
+              Admin Portal
+            </h1>
+            
+            <p className="text-gray-600 text-center mb-8 font-medium animate-fade-in-delayed">
+              Get Well Soon NGO Dashboard
+            </p>
+
+            <form onSubmit={handleLogin} className="space-y-6">
+              {authError && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm text-center animate-slide-down">
+                  {authError}
+                </div>
+              )}
+
+              <div className="animate-slide-left">
+                <input 
+                  value={creds.username} 
+                  onChange={e=>setCreds({...creds, username: e.target.value})} 
+                  placeholder="Username" 
+                  className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors duration-300 bg-gray-50 focus:bg-white font-medium" 
+                  required
+                />
+              </div>
+
+              <div className="animate-slide-right">
+                <input 
+                  value={creds.password} 
+                  onChange={e=>setCreds({...creds, password: e.target.value})} 
+                  placeholder="Password" 
+                  type="password" 
+                  className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors duration-300 bg-gray-50 focus:bg-white font-medium" 
+                  required
+                />
+              </div>
+
+              <div className="animate-fade-in-delayed">
+                <RippleButton 
+                  type="submit" 
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-bold hover:from-blue-700 hover:to-purple-700 transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  <span className="flex items-center justify-center space-x-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                    </svg>
+                    <span>Sign In</span>
+                  </span>
+                </RippleButton>
+              </div>
+            </form>
+          </div>
+        </div>
       </section>
     );
   }
 
   return (
-    <section className="max-w-6xl mx-auto p-4 pt-4">
-      <h1 className="text-2xl md:text-3xl font-extrabold text-blue-700 mb-4">Admin Dashboard</h1>
-      <div className="bg-white rounded-2xl shadow border p-4">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
-          <div className="inline-flex rounded-full overflow-hidden border">
-            <button className={`px-4 py-2 text-sm font-semibold ${tab==='contacts'?'bg-blue-600 text-white':'bg-white text-gray-700'}`} onClick={()=>setTab('contacts')}>Contacts</button>
-            <button className={`px-4 py-2 text-sm font-semibold ${tab==='volunteers'?'bg-blue-600 text-white':'bg-white text-gray-700'}`} onClick={()=>setTab('volunteers')}>Volunteers</button>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 animate-fade-in pt-16 md:pt-18">
+      <div className="max-w-7xl mx-auto p-6">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8 animate-slide-down">
+          <div>
+            <h1 className="text-5xl font-extrabold text-blue-600">
+              Admin Dashboard
+            </h1>
+            <p className="text-gray-600 mt-2 text-lg font-medium">Get Well Soon NGO Management Portal</p>
           </div>
-          <input
-            value={q}
-            onChange={e=>setQ(e.target.value)}
-            placeholder="Search name/email/message..."
-            className="flex-1 border rounded-full px-4 py-2 text-sm"
-          />
+          
+          <button
+            onClick={() => {
+              localStorage.removeItem('gws_token');
+              window.location.reload();
+            }}
+            className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl hover:from-red-600 hover:to-red-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <span>Logout</span>
+          </button>
         </div>
 
-        {error && <div className="text-red-600 mb-3">{error}</div>}
-        {loading ? (
-          <div className="py-16 text-center text-gray-500">Loading...</div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-left text-gray-500 border-b">
-                  <th className="py-2 pr-4">Name</th>
-                  {tab==='volunteers' && <th className="py-2 pr-4">Phone</th>}
-                  <th className="py-2 pr-4">Email</th>
-                  <th className="py-2 pr-4">{tab==='contacts'? 'Message' : 'Why Join'}</th>
-                  <th className="py-2 pr-4">Created</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((it)=> (
-                  <tr key={it._id || it.id} className="border-b hover:bg-gray-50">
-                    <td className="py-2 pr-4 font-medium text-gray-800">{it.name}</td>
-                    {tab==='volunteers' && <td className="py-2 pr-4">{it.phone}</td>}
-                    <td className="py-2 pr-4 text-blue-700">{it.email}</td>
-                    <td className="py-2 pr-4 text-gray-700 max-w-[360px] truncate" title={tab==='contacts'? it.message : it.why}>{tab==='contacts'? it.message : it.why}</td>
-                    <td className="py-2 pr-4 text-gray-500">{new Date(it.createdAt).toLocaleString()}</td>
-                  </tr>
-                ))}
-                {items.length === 0 && (
-                  <tr><td colSpan={5} className="py-8 text-center text-gray-500">No results</td></tr>
-                )}
-              </tbody>
-            </table>
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 animate-slide-left">
+          <div className="bg-white/70 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-lg">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-600 text-sm">Total Contacts</p>
+                <p className="text-2xl font-bold text-blue-600">{tab === 'contacts' ? total : '...'}</p>
+              </div>
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+            </div>
           </div>
-        )}
 
-        <div className="flex items-center justify-between mt-4">
-          <div className="text-xs text-gray-500">Total: {total}</div>
-          <div className="inline-flex gap-2">
-            <button disabled={page<=1} onClick={()=>setPage(p=>Math.max(1, p-1))} className="px-3 py-1 rounded border text-sm disabled:opacity-50">Prev</button>
-            <span className="text-sm px-1">{page} / {totalPages}</span>
-            <button disabled={page>=totalPages} onClick={()=>setPage(p=>Math.min(totalPages, p+1))} className="px-3 py-1 rounded border text-sm disabled:opacity-50">Next</button>
+          <div className="bg-white/70 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-lg">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-600 text-sm">Total Volunteers</p>
+                <p className="text-2xl font-bold text-green-600">{tab === 'volunteers' ? total : '...'}</p>
+              </div>
+              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white/70 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-lg">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-600 text-sm">Data Source</p>
+                <p className="text-2xl font-bold text-purple-600">{data?.source === 'database' ? 'MongoDB' : 'File'}</p>
+              </div>
+              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 p-6 animate-slide-right">
+          {/* Controls */}
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
+            <div className="flex bg-gray-100 rounded-2xl p-1">
+              <RippleButton
+                onClick={() => setTab('contacts')}
+                className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  tab === 'contacts'
+                    ? 'bg-white text-blue-600 shadow-lg'
+                    : 'text-gray-600 hover:text-blue-600'
+                }`}
+              >
+                <span className="flex items-center space-x-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span>Contacts</span>
+                </span>
+              </RippleButton>
+              
+              <RippleButton
+                onClick={() => setTab('volunteers')}
+                className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  tab === 'volunteers'
+                    ? 'bg-white text-green-600 shadow-lg'
+                    : 'text-gray-600 hover:text-green-600'
+                }`}
+              >
+                <span className="flex items-center space-x-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>Volunteers</span>
+                </span>
+              </RippleButton>
+            </div>
+
+            <div className="flex-1 relative">
+              <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                value={q}
+                onChange={e => setQ(e.target.value)}
+                placeholder="Search name, email, message..."
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none transition-colors duration-300"
+              />
+            </div>
+          </div>
+
+          {/* Content */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-4 animate-slide-down">
+              {error}
+            </div>
+          )}
+
+          {loading ? (
+            <div className="py-16 text-center animate-fade-in">
+              <div className="inline-flex items-center space-x-2 text-blue-600">
+                <svg className="animate-spin w-6 h-6" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span className="text-lg font-medium">Loading data...</span>
+              </div>
+            </div>
+          ) : (
+            <div className="overflow-hidden rounded-2xl border border-gray-200 animate-slide-up">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Name</th>
+                      {tab === 'volunteers' && <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Phone</th>}
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Email</th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">{tab === 'contacts' ? 'Message' : 'Why Join'}</th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Created</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                      {items.map((it, index) => (
+                        <tr
+                          key={it._id || it.id}
+                          className="hover:bg-blue-50 transition-colors duration-200 animate-fade-in"
+                        >
+                          <td className="px-6 py-4 font-medium text-gray-900">{it.name}</td>
+                          {tab === 'volunteers' && <td className="px-6 py-4 text-gray-600">{it.phone}</td>}
+                          <td className="px-6 py-4 text-blue-600 font-medium">{it.email}</td>
+                          <td className="px-6 py-4 text-gray-700 max-w-xs truncate" title={tab === 'contacts' ? it.message : it.why}>
+                            {tab === 'contacts' ? it.message : it.why}
+                          </td>
+                          <td className="px-6 py-4 text-gray-500 text-sm">
+                            {new Date(it.createdAt || it.timestamp).toLocaleString()}
+                          </td>
+                        </tr>
+                      ))}
+                    {items.length === 0 && (
+                      <tr>
+                        <td colSpan={tab === 'volunteers' ? 5 : 4} className="px-6 py-16 text-center text-gray-500">
+                          <div className="flex flex-col items-center space-y-2">
+                            <svg className="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <p className="text-lg font-medium">No results found</p>
+                            <p className="text-sm">Try adjusting your search criteria</p>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Pagination */}
+          <div className="flex items-center justify-between mt-6 animate-fade-in-delayed">
+            <div className="text-sm text-gray-600">
+              Showing <span className="font-medium">{items.length}</span> of <span className="font-medium">{total}</span> results
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <RippleButton
+                disabled={page <= 1}
+                onClick={() => setPage(p => Math.max(1, p - 1))}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              >
+                Previous
+              </RippleButton>
+              
+              <span className="px-4 py-2 text-sm font-medium text-gray-700">
+                Page {page} of {totalPages}
+              </span>
+              
+              <RippleButton
+                disabled={page >= totalPages}
+                onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              >
+                Next
+              </RippleButton>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

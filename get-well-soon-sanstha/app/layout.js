@@ -8,7 +8,7 @@ export const metadata = {
   title: 'Get Well Soon',
   description: 'Spreading Care & Warmth in Hospitals',
   icons: {
-    icon: '/favicon.ico', // public/favicon.ico
+    icon: '/favicon.ico',
   },
 }
 
@@ -19,7 +19,6 @@ export default function RootLayout({ children }) {
         {/* Tailwind CDN (sirf testing ke liye, production me npm install karna better hai) */}
         <script src="https://cdn.tailwindcss.com"></script>
         {/* Fonts for a clean NGO theme */}
-         <link rel="icon" href="/favicon.ico" />
           <link
           href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
           rel="stylesheet"
@@ -34,7 +33,7 @@ export default function RootLayout({ children }) {
       <body className="bg-gradient-to-tr from-sky-50 via-emerald-50 to-white font-sans min-h-screen text-gray-800 antialiased">
         <SmoothScroll />
         <Navbar />
-        <main className="pt-16 md:pt-19">{children}</main>
+        <main className="pt-16 md:pt-18">{children}</main>
         <Footer />
       </body>
     </html>
