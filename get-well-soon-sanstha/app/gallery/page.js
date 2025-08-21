@@ -373,10 +373,10 @@ export default function Gallery() {
                 <source src="/video/vid1.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <div className="p-4">
+              {/* <div className="p-4">
                 <h3 className="font-semibold text-lg mb-2">Meal Distribution</h3>
                 <p className="text-gray-600 text-sm">Volunteers serving meals to patients and families</p>
-              </div>
+              </div> */}
             </div>
             
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -388,10 +388,10 @@ export default function Gallery() {
                 <source src="/video/vid2.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <div className="p-4">
+              {/* <div className="p-4">
                 <h3 className="font-semibold text-lg mb-2">Emotional Support</h3>
                 <p className="text-gray-600 text-sm">Providing care and support to families</p>
-              </div>
+              </div> */}
             </div>
             
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -403,10 +403,10 @@ export default function Gallery() {
                 <source src="/video/vid3.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <div className="p-4">
+              {/* <div className="p-4">
                 <h3 className="font-semibold text-lg mb-2">Special Events</h3>
                 <p className="text-gray-600 text-sm">Community celebrations and special occasions</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
