@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+         <meta name="google-site-verification" content="google53500dcf61868f64" />
         {/* Tailwind CDN (sirf testing ke liye, production me npm install karna better hai) */}
         <script src="https://cdn.tailwindcss.com"></script>
         {/* Fonts for a clean NGO theme */}

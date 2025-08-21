@@ -220,15 +220,15 @@ export default function Donate() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-4xl mx-auto text-center mb-5">
           <div className="bg-white rounded-xl shadow p-8">
-            <div className="text-3xl font-extrabold text-blue-700 mb-2">80%</div>
+            <div className="text-3xl font-extrabold text-blue-700 mb-2">100%</div>
             <div className="text-gray-700 font-medium mb-1">Direct Patient Support</div>
           </div>
           <div className="bg-white rounded-xl shadow p-8">
-            <div className="text-3xl font-extrabold text-green-700 mb-2">15%</div>
+            <div className="text-3xl font-extrabold text-green-700 mb-2">0%</div>
             <div className="text-gray-700 font-medium mb-1">Operations & Infrastructure</div>
           </div>
           <div className="bg-white rounded-xl shadow p-8">
-            <div className="text-3xl font-extrabold text-purple-700 mb-2">5%</div>
+            <div className="text-3xl font-extrabold text-purple-700 mb-2">0%</div>
             <div className="text-gray-700 font-medium mb-1">Administrative Costs</div>
           </div>
         </div>
