@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://get-well-soon-ngo.vercel.app
+
+# Sitemaps
+Sitemap: https://get-well-soon-ngo.vercel.app/sitemap.xml
