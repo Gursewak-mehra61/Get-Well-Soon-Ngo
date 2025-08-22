@@ -23,7 +23,8 @@ app.use(cors({
     'http://127.0.0.1:3000',
     'https://get-well-soon-ngo.onrender.com',
     /\.vercel\.app$/,
-    /\.netlify\.app$/
+    /\.netlify\.app$/,
+    'https://getwellsoonsewasamiti.com'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
