@@ -44,6 +44,11 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true, service: 'gws-backend', time: new Date().toISOString() });
 });
 
+// Root route
+app.get('/', (_req, res) => {
+  res.send('Welcome to Get Well Soon API');
+});
+
 app.use('/api/auth', authRouter);
 app.use('/api/contact', contactRouter);
 app.use('/api/volunteer', volunteerRouter); // Mixed auth - submit is public, list requires auth
