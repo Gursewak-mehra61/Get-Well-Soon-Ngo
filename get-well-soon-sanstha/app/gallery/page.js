@@ -197,14 +197,14 @@ const activities = [
   title: "Event Title 28",
   desc: "Description for event 28 goes here.",
   tag: "Special Events",
-  img: "/special-event/se-4.jpg",
+  img: "/special-event/se-5.jpg",
 },
 {
   id: 29,
   title: "Event Title 29",
   desc: "Description for event 29 goes here.",
   tag: "Special Events",
-  img: "/special-event/se-4.jpg",
+  img: "/special-event/se-6.jpg",
 },
 
 
