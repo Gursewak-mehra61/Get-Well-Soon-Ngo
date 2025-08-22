@@ -380,7 +380,7 @@ export default function Gallery() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <video 
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-contain"
                 controls
                 poster="/videos/posters/meal-distribution.jpg"
               >
@@ -395,7 +395,7 @@ export default function Gallery() {
             
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <video 
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-contain"
                 controls
                 poster="/videos/posters/emotional-support.jpg"
               >
@@ -410,7 +410,7 @@ export default function Gallery() {
             
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <video 
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-contain"
                 controls
                 poster="/videos/posters/special-events.jpg"
               >
