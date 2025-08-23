@@ -158,7 +158,7 @@ export default function Footer() {
   <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.2.48 2.5.73 3.85.73a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.25 2.65.73 3.85a1 1 0 01-.21 1.11l-2.2 2.2z"/>
 </svg>
     ),
-    text: "+91 9416346327",
+    text: "+91 9416346327 , 9804155551",
   },
   {
     icon: (
@@ -176,7 +176,7 @@ export default function Footer() {
         0L4 9.2V18h16z"/>
       </svg>
     ),
-    text: "getwellsoon@gmail.com",
+    text: "getwellsoonsewasamitihansi@gmail.com",
   },
 ];
 

@@ -19,7 +19,7 @@ export default function Donate() {
   const UPI_ID = "mehraalpha20@okaxis";
   const QR_UPI = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(getUpiLink({ upi: UPI_ID, amount }))}`;
   const PAYPAL_LINK = "https://paypal.me/dummyngo";
-  const GMAIL = "getwellsoon@gmail.com";
+  const GMAIL = "getwellsoonsewasamitihansi@gmail.com";
 
   const handleCustomAmount = (e) => {
     setCustomAmount(e.target.value);

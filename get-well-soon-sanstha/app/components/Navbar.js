@@ -56,13 +56,13 @@ export default function Navbar() {
               </li>
             ))}
             <li>
-              <Link
+              {/* <Link
                 href="/donate"
                 className="px-6 py-2 rounded-full bg-gradient-to-br from-green-500 to-blue-600 text-white text-base md:text-lg font-semibold shadow-lg hover:shadow-xl hover:from-green-600 hover:to-blue-700 transition-all duration-300"
                 onClick={() => setIsOpen(false)}
               >
                 Donate
-              </Link>
+              </Link> */}
             </li>
           </ul>
 
@@ -106,7 +106,7 @@ export default function Navbar() {
               ))}
               
               {/* Mobile Donate Button */}
-              <Link
+              {/* <Link
                 href="/donate"
                 className="group relative py-2 px-4 rounded-xl font-medium text-white transition-all duration-300 hover:shadow-md hover:scale-105 animate-fade-in bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-sm"
                 style={{ animationDelay: `${navItems.length * 0.1}s` }}
@@ -119,7 +119,7 @@ export default function Navbar() {
                   Donate
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </Link>
+              </Link> */}
             </nav>
           </div>
         </div>

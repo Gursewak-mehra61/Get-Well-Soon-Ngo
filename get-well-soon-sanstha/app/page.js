@@ -24,7 +24,7 @@ export default function Home() {
             We provide essential support to hospital patients and their families through free meals, blankets, and emotional care during their healing journey.
           </p>
           <div className="flex gap-3 sm:gap-4 justify-center animate-fade-in">
-            <Link href="/donate" className="px-4 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs sm:text-lg font-semibold rounded-full shadow-2xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300">
+            <Link href="/" className="px-4 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs sm:text-lg font-semibold rounded-full shadow-2xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300">
               Donate Now
             </Link>
             <Link href="/volunteer" className="px-4 sm:px-8 py-2 sm:py-3 border-2 border-white/80 backdrop-blur-sm text-white text-xs sm:text-lg font-semibold rounded-full shadow-2xl hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300">
@@ -184,7 +184,7 @@ export default function Home() {
             Your support can bring comfort and hope to patients and families during their most challenging times. Every contribution makes a meaningful impact in someone's healing journey.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fade-in">
-            <Link href="/donate" className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-sm sm:text-base hover:bg-gray-100 shadow-2xl transform hover:scale-105 transition-all duration-300 hover:shadow-white/20">
+            <Link href="/" className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-sm sm:text-base hover:bg-gray-100 shadow-2xl transform hover:scale-105 transition-all duration-300 hover:shadow-white/20">
                Donate Now
             </Link>
             <Link href="/volunteer" className="bg-transparent border-2 border-white/80 backdrop-blur-sm text-white px-8 py-4 rounded-2xl font-semibold text-sm sm:text-base hover:bg-white hover:text-blue-600 shadow-2xl transform hover:scale-105 transition-all duration-300">

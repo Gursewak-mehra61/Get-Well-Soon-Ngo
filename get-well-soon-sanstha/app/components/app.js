@@ -12,7 +12,7 @@ export default function Navbar() {
           <li><Link href="/services">Services</Link></li>
           <li><Link href="/gallery">Gallery</Link></li>
           <li><Link href="/volunteer">Volunteer</Link></li>
-          <li><Link href="/donate">Donate</Link></li>
+          {/* <li><Link href="/donate">Donate</Link></li> */}
           <li><Link href="/contact">Contact</Link></li>
         </ul>
       </div>

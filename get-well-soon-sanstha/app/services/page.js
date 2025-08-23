@@ -124,7 +124,7 @@ export default function Services() {
       </section>
 
       {/* Additional Support Services */}
-      <section className="bg-blue-50 py-10 px-4">
+      {/* <section className="bg-blue-50 py-10 px-4">
         <h3 className="text-2xl font-bold mb-2 text-center text-blue-700">Additional Support Services</h3>
         <p className="text-center text-gray-600 mb-10">
           Beyond our core services, we offer various additional support programs to address diverse patient needs
@@ -167,7 +167,7 @@ export default function Services() {
             <div className="text-gray-500 text-sm">Basic health checks and wellness support during long-term stays.</div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* How We Deliver Section */}
       <section className="max-w-5xl mx-auto py-16 px-4">
@@ -208,7 +208,7 @@ export default function Services() {
       </section>
 
       {/* Need Our Services Section */}
-      <section className="bg-blue-50 py-14 px-4">
+      {/* <section className="bg-blue-50 py-14 px-4">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 rounded-xl bg-white shadow p-8">
           <div className="flex-1">
             <h3 className="text-2xl font-bold text-blue-700 mb-2">Need Our Services?</h3>
@@ -229,7 +229,7 @@ export default function Services() {
             <img src="https://images.unsplash.com/photo-1493836512294-502baa1986e2?auto=format&fit=crop&w=1200&q=80" alt="Help Service" className="rounded-lg shadow w-full object-cover" />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Support CTA Section */}
       <section className="bg-gradient-to-r from-blue-600 via-green-500 to-blue-400 py-12 px-4 text-white text-center">
@@ -238,7 +238,7 @@ export default function Services() {
           Help us expand our services and reach more patients in need. Your support enables us to provide comprehensive care and comfort.
         </p>
         <div className="flex flex-col md:flex-row gap-5 justify-center">
-          <Link href="/donate" className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-100 shadow">
+          <Link href="/" className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-100 shadow">
             Donate Now
           </Link>
           <Link href="/volunteer" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 shadow">

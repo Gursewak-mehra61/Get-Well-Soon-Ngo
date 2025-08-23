@@ -1,30 +1,36 @@
-'use client';
+"use client";
 import { motion } from "framer-motion";
 
 const teamMembers = [
   {
     name: "Sr. Manjeet Singh",
     img: "/team/sr-manjeet-pic.png",
+    roles: ["Co-Founder"],
   },
   {
     name: "Mr. Parveen Dhamija",
     img: "/team/parveen-pic.png",
+    roles: ["Co-Founder"],
   },
   {
     name: "Mr. Subash Chawla",
     img: "/team/subash-pic.png",
+    roles: ["Volunteer"],
   },
   {
     name: "Mr. Virender Arora",
     img: "/team/virender-pic.png",
+    roles: ["Volunteer"],
   },
   {
     name: "Mr. Puneet Nagpal",
     img: "/team/puneet-pic.png",
+    roles: ["Volunteer"],
   },
   {
     name: "Mr. Ish Khurana",
     img: "/team/ish-pic.png",
+    roles: ["Volunteer"],
   },
 ];
 
@@ -45,18 +51,17 @@ export default function About() {
     >
       {/* Header */}
       <div className="bg-blue-50 rounded-xl py-5 px-4 sm:py-6 sm:px-6 mb-10 shadow-md max-w-full sm:max-w-2xl mx-auto">
-  <h1 className="text-2xl sm:text-3xl font-bold text-blue-800 mb-3 text-center">
-    About Get Well Soon
-  </h1>
-  <p className="mb-2 text-sm sm:text-base md:text-lg text-gray-700 text-center max-w-full sm:max-w-2xl mx-auto px-2 sm:px-0">
-    Founded in 2018, Get Well Soon Sanstha has served over 150,000 people,
-    providing care and support during their most vulnerable moments. On
-    average, we assist 50 individuals daily, ensuring every patient
-    receives not only medical attention but also kindness, warmth, and
-    essential daily needs.
-  </p>
-</div>
-
+        <h1 className="text-2xl sm:text-3xl font-bold text-blue-800 mb-3 text-center">
+          About Get Well Soon
+        </h1>
+        <p className="mb-2 text-sm sm:text-base md:text-lg text-gray-700 text-center max-w-full sm:max-w-2xl mx-auto px-2 sm:px-0">
+          Founded in 2018, Get Well Soon Sanstha has served over 150,000 people,
+          providing care and support during their most vulnerable moments. On
+          average, we assist 50 individuals daily, ensuring every patient
+          receives not only medical attention but also kindness, warmth, and
+          essential daily needs.
+        </p>
+      </div>
 
       {/* Our Story */}
       <div className="bg-green-50 rounded-xl px-4 py-5 mb-10 shadow-md">
@@ -93,7 +98,11 @@ export default function About() {
               <div className="text-base sm:text-lg font-bold text-blue-700 mb-1 text-center">
                 {member.name}
               </div>
-              <div className="text-xs sm:text-sm text-gray-500 text-center">Volunteer</div>
+              <div className="text-xs sm:text-sm text-gray-500 text-center">
+                {member?.roles?.map((role, idx) => (
+                  <p key={idx}>{role}</p>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
@@ -119,8 +128,12 @@ export default function About() {
             <div className="text-lg sm:text-xl font-bold text-orange-700 mb-1 text-center">
               {chef.name}
             </div>
-            <div className="text-xs sm:text-sm text-gray-500 mb-2 text-center">{chef.role}</div>
-            <p className="text-gray-700 text-sm sm:text-base text-center">{chef.bio}</p>
+            <div className="text-xs sm:text-sm text-gray-500 mb-2 text-center">
+              {chef.role}
+            </div>
+            <p className="text-gray-700 text-sm sm:text-base text-center">
+              {chef.bio}
+            </p>
           </motion.div>
         </div>
       </div>
