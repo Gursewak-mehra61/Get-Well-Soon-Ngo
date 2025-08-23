@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://unpkg.com/leaflet/dist/leaflet.css');
+
 /* Global theme: fonts, colors, scrollbar */
 /* Let Lenis control scroll; remove native smooth-behavior */
 html { scroll-behavior: auto; }

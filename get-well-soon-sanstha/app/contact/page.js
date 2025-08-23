@@ -1,14 +1,17 @@
 'use client';
 import { useState, useEffect } from "react";
+import dynamic from 'next/dynamic';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { buildApiUrl, API_ENDPOINTS } from "../config/api";
 
+
+// Dynamic import MapSection at top-level, outside any component
+const MapSection = dynamic(() => import('../contact/mapSection'), { ssr: false });
 // Beautiful Popup Notification Component
 function NotificationPopup({ type, message, onClose, isVisible }) {
   const [shouldRender, setShouldRender] = useState(isVisible);
   const [isAnimating, setIsAnimating] = useState(false);
-
   useEffect(() => {
     if (isVisible) {
       setShouldRender(true);
@@ -134,7 +137,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-800 mb-1">Office Address</h3>
-                      <p className="text-gray-600">Krishna Power Tool, Near SBI Bank<br />Uttam nagar, Hansi, Hisar<br />Haryana 125033</p>
+                      <p className="text-gray-600">Krishna Power Tool, Near SBI Bank<br />Uttam nagar, Hansi, Hansi<br />Haryana 125033</p>
                     </div>
                   </div>
 
@@ -162,6 +165,22 @@ export default function Contact() {
                     </div>
                   </div>
                 </div>
+              </div>
+              {/* Enhanced Map Section */}
+              <div className="bg-white/70 backdrop-blur-lg rounded-3xl p-6 shadow-xl border border-white/20 animate-slide-up">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-800">Find Us Here</h2>
+                    <p className="text-gray-600 text-sm">Interactive map with directions</p>
+                  </div>
+                </div>
+                <MapSection />
               </div>
             </div>
 
