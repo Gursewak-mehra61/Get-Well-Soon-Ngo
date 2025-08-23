@@ -144,7 +144,7 @@ export default function Footer() {
         <path d="M12 22c-.3 0-.6-.1-.8-.4C7.5 17.2 5 13.9 5 10a7 7 0 1 1 14 0c0 3.9-2.5 7.2-6.2 11.6-.2.3-.5.4-.8.4ZM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
       </svg>
     ),
-    text: "Krishna Power Tool, Near SBI Bank ,Uttam nagar,Hansi, Hansi ,Haryana 125033",
+    text: "Krishna Power Tool, Near SBI Bank ,Uttam nagar,Hansi, Hisar ,Haryana 125033",
   },
   {
     icon: (

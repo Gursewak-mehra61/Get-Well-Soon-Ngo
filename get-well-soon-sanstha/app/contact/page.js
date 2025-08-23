@@ -137,7 +137,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-800 mb-1">Office Address</h3>
-                      <p className="text-gray-600">Krishna Power Tool, Near SBI Bank<br />Uttam nagar, Hansi, Hansi<br />Haryana 125033</p>
+                      <p className="text-gray-600">Krishna Power Tool, Near SBI Bank<br />Uttam nagar, Hansi, Hisar<br />Haryana 125033</p>
                     </div>
                   </div>
 
